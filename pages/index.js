@@ -132,6 +132,9 @@ export default function Home() {
                             ))}
                         </tbody>
                     </Table>
+                    <div className="mt-auto text-center">
+                        <span className="text-muted">Caio Arâes, David Freitas, Guilherme Werner</span>
+                    </div>
                 </Container>
             </main>
         </>
