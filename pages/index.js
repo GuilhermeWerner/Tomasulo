@@ -16,6 +16,10 @@ export default function Home() {
     const [reservationStations, setReservationStations] = useState([]);
     const [registerStatus, setRegisterStatus] = useState([]);
 
+    function nextCycle() {
+        console.log("CLOCK")
+    }
+
     function issueInstruction() {
 
     }
@@ -51,13 +55,36 @@ export default function Home() {
                 <Container>
                     <Row className="row my-4">
                         <Col>
-                            <h3>Reorder Buffer</h3>
+                            <h3>Instruction Status</h3>
                         </Col>
                         <Col className="text-end">
-                            <Button variant="primary">Proxímo</Button>
+                            <Button variant="primary" onClick={nextCycle}>Próximo</Button>
                         </Col>
                     </Row>
-                    <Table striped bordered hover>
+                    <Table bordered hover>
+                        <thead>
+                            <tr>
+                                <th>Instruction</th>
+                                <th>Issued</th>
+                                <th>Execute</th>
+                                <th>Write Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {instructionStatus.map((instr, index) => (
+                                <tr>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                    <div className="my-4">
+                        <h3>Reorder Buffer</h3>
+                    </div>
+                    <Table bordered hover>
                         <thead>
                             <tr>
                                 <th>Entry</th>
@@ -84,7 +111,7 @@ export default function Home() {
                     <div className="my-4">
                         <h3>Reservation Stations</h3>
                     </div>
-                    <Table striped bordered hover>
+                    <Table bordered hover>
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -115,69 +142,52 @@ export default function Home() {
                     <div className="my-4">
                         <h3>Registers Status</h3>
                     </div>
-                    <Table striped bordered hover>
+                    <Table bordered hover>
                         <thead>
                             <tr>
                                 <th>Field</th>
                                 <th>F0</th>
+                                <th>F1</th>
                                 <th>F2</th>
+                                <th>F3</th>
                                 <th>F4</th>
+                                <th>F5</th>
                                 <th>F6</th>
+                                <th>F7</th>
                                 <th>F8</th>
+                                <th>F9</th>
                                 <th>F10</th>
-                                <th>F14</th>
-                                <th>F16</th>
-                                <th>F18</th>
-                                <th>F20</th>
-                                <th>F22</th>
-                                <th>F24</th>
-                                <th>F28</th>
-                                <th>F30</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {registerStatus.map((instr, index) => (
-                                <tr>
-                                    <td>Add1</td>
-                                    <td>Add1</td>
-                                    <td>Add1</td>
-                                    <td>Add1</td>
-                                    <td>Add1</td>
-                                    <td>Add1</td>
-                                    <td>Add1</td>
-                                    <td>Add1</td>
-                                    <td>Add1</td>
-                                    <td>Add1</td>
-                                    <td>Add1</td>
-                                    <td>Add1</td>
-                                    <td>Add1</td>
-                                    <td>Add1</td>
-                                    <td>Add1</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                    <div className="my-4">
-                        <h3>Instruction Status</h3>
-                    </div>
-                    <Table striped bordered hover>
-                        <thead>
                             <tr>
-                                <th>Instruction</th>
-                                <th>Issued</th>
-                                <th>Execute</th>
-                                <th>Write Result</th>
+                                <td>Reorder #</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {instructionStatus.map((instr, index) => (
-                                <tr>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                </tr>
-                            ))}
+                            <tr>
+                                <td>Busy</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </Table>
                     <div className="mt-auto text-center">
