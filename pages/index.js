@@ -5,8 +5,13 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useState } from 'react'
 
 export default function Home() {
+    const [instructionStatus, setInstructionStatus] = useState([]);
+    const [reservationStations, setReservationStations] = useState([]);
+    const [registerStatus, setRegisterStatus] = useState([]);
+
     return (
         <>
             <Head>
@@ -21,7 +26,7 @@ export default function Home() {
                     crossorigin="anonymous"
                 />
             </Head>
-            <Navbar bg="light" expand="lg">
+            <Navbar bg="dark" variant="dark" expand="lg">
                 <Container>
                     <Navbar.Brand href="/">Tomasulo</Navbar.Brand>
                 </Container>
@@ -29,35 +34,102 @@ export default function Home() {
             <main>
                 <Container>
                     <div className="my-4">
-                        <h1>Instruction Status</h1>
+                        <h3>Instruction Status</h3>
                     </div>
                     <Table striped bordered hover>
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
+                                <th>Instruction</th>
+                                <th>Issued</th>
+                                <th>Execute</th>
+                                <th>Write Result</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {instructionStatus.map((instr, index) => (
+                                <tr>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                    <div className="my-4">
+                        <h3>Reservations Stations</h3>
+                    </div>
+                    <Table striped bordered hover>
+                        <thead>
                             <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <th>Name</th>
+                                <th>Busy</th>
+                                <th>Op</th>
+                                <th>Vj</th>
+                                <th>Vk</th>
+                                <th>Qj</th>
+                                <th>Qk</th>
+                                <th>A</th>
                             </tr>
+                        </thead>
+                        <tbody>
+                            {reservationStations.map((instr, index) => (
+                                <tr>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                    <div className="my-4">
+                        <h3>Registers Status</h3>
+                    </div>
+                    <Table striped bordered hover>
+                        <thead>
                             <tr>
-                                <td>2</td>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
+                                <th>Field</th>
+                                <th>F0</th>
+                                <th>F2</th>
+                                <th>F4</th>
+                                <th>F6</th>
+                                <th>F8</th>
+                                <th>F10</th>
+                                <th>F14</th>
+                                <th>F16</th>
+                                <th>F18</th>
+                                <th>F20</th>
+                                <th>F22</th>
+                                <th>F24</th>
+                                <th>F28</th>
+                                <th>F30</th>
                             </tr>
-                            <tr>
-                                <td>3</td>
-                                <td colSpan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                        </thead>
+                        <tbody>
+                            {registerStatus.map((instr, index) => (
+                                <tr>
+                                    <td>Add1</td>
+                                    <td>Add1</td>
+                                    <td>Add1</td>
+                                    <td>Add1</td>
+                                    <td>Add1</td>
+                                    <td>Add1</td>
+                                    <td>Add1</td>
+                                    <td>Add1</td>
+                                    <td>Add1</td>
+                                    <td>Add1</td>
+                                    <td>Add1</td>
+                                    <td>Add1</td>
+                                    <td>Add1</td>
+                                    <td>Add1</td>
+                                    <td>Add1</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </Table>
                 </Container>
