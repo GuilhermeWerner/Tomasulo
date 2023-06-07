@@ -58,91 +58,137 @@ export default function Home() {
                 <Container>
                     <Row className="row my-4">
                         <Col>
-                            <h3>Instruction Status</h3>
+                            <h3>Ciclos: {clock}</h3>
                         </Col>
                         <Col className="text-end">
-                            <span>Ciclos: {clock}</span>
                             <Button className="ms-4" variant="primary" onClick={nextCycle}>Próximo</Button>
                         </Col>
                     </Row>
-                    <Table bordered hover>
-                        <thead>
-                            <tr>
-                                <th>Instruction</th>
-                                <th>Issued</th>
-                                <th>Execute</th>
-                                <th>Write Result</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {instructionStatus.map((instr, index) => (
-                                <tr>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                    <div className="my-4">
-                        <h3>Reorder Buffer</h3>
-                    </div>
-                    <Table bordered hover>
-                        <thead>
-                            <tr>
-                                <th>Entry</th>
-                                <th>Busy</th>
-                                <th>Instruction</th>
-                                <th>State</th>
-                                <th>Destination</th>
-                                <th>Value</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {instructionStatus.map((instr, index) => (
-                                <tr>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                    <div className="my-4">
-                        <h3>Reservation Stations</h3>
-                    </div>
-                    <Table bordered hover>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Busy</th>
-                                <th>Op</th>
-                                <th>Vj</th>
-                                <th>Vk</th>
-                                <th>Qj</th>
-                                <th>Qk</th>
-                                <th>A</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {reservationStations.map((instr, index) => (
-                                <tr>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </Table>
+                    <Row className="row my-4">
+                        <Col>
+                            <div className="my-4">
+                                <h3>Instruction Status</h3>
+                            </div>
+                            <Table bordered hover>
+                                <thead>
+                                    <tr>
+                                        <th>Instruction</th>
+                                        <th>Issued</th>
+                                        <th>Execute</th>
+                                        <th>Write Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {instructionStatus.map((instr, index) => (
+                                        <tr>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
+                        </Col>
+                        <Col>
+                            <div className="my-4">
+                                <h3>Reorder Buffer</h3>
+                            </div>
+                            <Table bordered hover>
+                                <thead>
+                                    <tr>
+                                        <th>Entry</th>
+                                        <th>Busy</th>
+                                        <th>Instruction</th>
+                                        <th>State</th>
+                                        <th>Destination</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {instructionStatus.map((instr, index) => (
+                                        <tr>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
+                        </Col>
+                    </Row>
+
+                    <Row className="row my-4">
+                        <Col>
+                            <div className="my-4">
+                                <h3>Reservation Stations (Load/Store)</h3>
+                            </div>
+                            <Table bordered hover>
+                                <thead>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Busy</th>
+                                        <th>Op</th>
+                                        <th>Vj</th>
+                                        <th>Vk</th>
+                                        <th>Qj</th>
+                                        <th>Qk</th>
+                                        <th>A</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {reservationStations.map((instr, index) => (
+                                        <tr>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
+                        </Col>
+                        <Col>
+                            <div className="my-4">
+                                <h3>Reservation Stations</h3>
+                            </div>
+                            <Table bordered hover>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Busy</th>
+                                        <th>Op</th>
+                                        <th>Vj</th>
+                                        <th>Vk</th>
+                                        <th>Qj</th>
+                                        <th>Qk</th>
+                                        <th>A</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {reservationStations.map((instr, index) => (
+                                        <tr>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                            <td>batata</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
+                        </Col>
+                    </Row>
                     <div className="my-4">
                         <h3>Registers Status</h3>
                     </div>
