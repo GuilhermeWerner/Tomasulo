@@ -11,14 +11,10 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 
 export default function Home() {
+    const [clock, setClock] = useState(0);
     const [instructionStatus, setInstructionStatus] = useState([]);
-    const [reorderBuffer, setReorderBuffer] = useState([]);
     const [reservationStations, setReservationStations] = useState([]);
     const [registerStatus, setRegisterStatus] = useState([]);
-
-    function nextCycle() {
-        console.log("CLOCK")
-    }
 
     function issueInstruction() {
 
@@ -30,6 +26,13 @@ export default function Home() {
 
     function writeInstruction() {
 
+    }
+
+    function nextCycle() {
+        setClock(clock + 1);
+        issueInstruction();
+        executeInstruction();
+        writeInstruction();
     }
 
     return (
@@ -58,7 +61,8 @@ export default function Home() {
                             <h3>Instruction Status</h3>
                         </Col>
                         <Col className="text-end">
-                            <Button variant="primary" onClick={nextCycle}>Próximo</Button>
+                            <span>Ciclos: {clock}</span>
+                            <Button className="ms-4" variant="primary" onClick={nextCycle}>Próximo</Button>
                         </Col>
                     </Row>
                     <Table bordered hover>
@@ -96,7 +100,7 @@ export default function Home() {
                             </tr>
                         </thead>
                         <tbody>
-                            {reorderBuffer.map((instr, index) => (
+                            {instructionStatus.map((instr, index) => (
                                 <tr>
                                     <td>batata</td>
                                     <td>batata</td>
