@@ -1,17 +1,32 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Table from 'react-bootstrap/Table'
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Container'
+import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useState } from 'react'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
 
 export default function Home() {
     const [instructionStatus, setInstructionStatus] = useState([]);
     const [reorderBuffer, setReorderBuffer] = useState([]);
     const [reservationStations, setReservationStations] = useState([]);
     const [registerStatus, setRegisterStatus] = useState([]);
+
+    function issueInstruction() {
+
+    }
+
+    function executeInstruction() {
+
+    }
+
+    function writeInstruction() {
+
+    }
 
     return (
         <>
@@ -34,9 +49,14 @@ export default function Home() {
             </Navbar>
             <main>
                 <Container>
-                <div className="my-4">
-                        <h3>Reorder Buffer</h3>
-                    </div>
+                    <Row className="row my-4">
+                        <Col>
+                            <h3>Reorder Buffer</h3>
+                        </Col>
+                        <Col className="text-end">
+                            <Button variant="primary">Proxímo</Button>
+                        </Col>
+                    </Row>
                     <Table striped bordered hover>
                         <thead>
                             <tr>
@@ -158,6 +178,9 @@ export default function Home() {
                             ))}
                         </tbody>
                     </Table>
+                    <div className="mt-auto text-center">
+                        <span className="text-muted">Caio Arâes, David Freitas, Guilherme Werner</span>
+                    </div>
                 </Container>
             </main>
         </>
