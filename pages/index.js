@@ -69,14 +69,16 @@ export default function Home() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>batata</td>
-                                <td>batata</td>
-                                <td>batata</td>
-                                <td>batata</td>
-                                <td>batata</td>
-                                <td>batata</td>
-                            </tr>
+                            {reorderBuffer.map((instr, index) => (
+                                <tr>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </Table>
                     <div className="my-4">
