@@ -12,6 +12,7 @@ import Button from 'react-bootstrap/Button';
 
 export default function Home() {
     const [instructionStatus, setInstructionStatus] = useState([]);
+    const [reorderBuffer, setReorderBuffer] = useState([]);
     const [reservationStations, setReservationStations] = useState([]);
     const [registerStatus, setRegisterStatus] = useState([]);
 
@@ -50,7 +51,7 @@ export default function Home() {
                 <Container>
                     <Row className="row my-4">
                         <Col>
-                            <h3>Instruction Status</h3>
+                            <h3>Reorder Buffer</h3>
                         </Col>
                         <Col className="text-end">
                             <Button variant="primary">Proxímo</Button>
@@ -59,25 +60,27 @@ export default function Home() {
                     <Table striped bordered hover>
                         <thead>
                             <tr>
+                                <th>Entry</th>
+                                <th>Busy</th>
                                 <th>Instruction</th>
-                                <th>Issued</th>
-                                <th>Execute</th>
-                                <th>Write Result</th>
+                                <th>State</th>
+                                <th>Destination</th>
+                                <th>Value</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {instructionStatus.map((instr, index) => (
-                                <tr>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                    <td>batata</td>
-                                </tr>
-                            ))}
+                            <tr>
+                                <td>batata</td>
+                                <td>batata</td>
+                                <td>batata</td>
+                                <td>batata</td>
+                                <td>batata</td>
+                                <td>batata</td>
+                            </tr>
                         </tbody>
                     </Table>
                     <div className="my-4">
-                        <h3>Reservations Stations</h3>
+                        <h3>Reservation Stations</h3>
                     </div>
                     <Table striped bordered hover>
                         <thead>
@@ -148,6 +151,29 @@ export default function Home() {
                                     <td>Add1</td>
                                     <td>Add1</td>
                                     <td>Add1</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                    <div className="my-4">
+                        <h3>Instruction Status</h3>
+                    </div>
+                    <Table striped bordered hover>
+                        <thead>
+                            <tr>
+                                <th>Instruction</th>
+                                <th>Issued</th>
+                                <th>Execute</th>
+                                <th>Write Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {instructionStatus.map((instr, index) => (
+                                <tr>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                    <td>batata</td>
+                                    <td>batata</td>
                                 </tr>
                             ))}
                         </tbody>
