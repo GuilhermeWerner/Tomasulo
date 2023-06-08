@@ -240,7 +240,7 @@ export default function Home() {
                             </tr>
                         </tbody>
                     </Table>
-                    <div className="mt-auto text-center">
+                    <div className="my-4 text-center">
                         <span className="text-muted">Caio Arâes, David Freitas, Guilherme Werner</span>
                     </div>
                 </Container>
