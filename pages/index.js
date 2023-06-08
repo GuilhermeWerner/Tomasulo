@@ -20,12 +20,11 @@ export default function Home() {
     const { updateProgram } = useContext(ProgramContext);
 
     const handleClick = () => {
-        const program = { name: 'John', age: 25 };
-        updateProgram(program);
+        updateProgram(instructionList);
         router.push('/runner');
     };
 
-    const [instructionList, setInstructionList] = useState([]);
+    let [instructionList, setInstructionList] = useState([{}, {}, {}, {}, {}, {}]);
 
     return (
         <>
@@ -56,49 +55,41 @@ export default function Home() {
                             <Button className="ms-4" variant="primary" onClick={handleClick}>Execute</Button>
                         </Col>
                     </Row>
-                    <Row className="mb-3">
-                        <Col>
-                            <Form.Control
-                                className="form-control-sm"
-                                type="number"
-                                placeholder="Select number of instructions"
-                            />
-                        </Col>
-                    </Row>
                     <Row className="row my-4">
                         <Col>
                             <Table bordered hover>
                                 <thead>
                                     <tr>
-                                        <th>Op</th>
+                                        <th>OP</th>
                                         <th>RD</th>
                                         <th>RS</th>
                                         <th>RT</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {instructionList.map((instr, index) => (
+                                    {instructionList.map((d, i) => (
                                         <tr>
-                                            <td>{`${instr.instrucao.operacao} ${instr.instrucao.registradorR} ${instr.instrucao.registradorS} ${instr.instrucao.registradorT}`}</td>
                                             <td>
-                                                <option value="">Operand</option>
-                                                <option value="ADD">ADD</option>
-                                                <option value="ADDD">ADDD</option>
-                                                <option value="BEQ">BEQ</option>
-                                                <option value="BNEZ">BNEZ</option>
-                                                <option value="DADDUI">DADDUI</option>
-                                                <option value="DIVD">DIVD</option>
-                                                <option value="LD">LD</option>
-                                                <option value="MULTD">MULTD</option>
-                                                <option value="SD">SD</option>
-                                                <option value="SUBD">SUBD</option>
+                                                <Form.Select aria-label="Default select example">
+                                                    <option value="">-- Select --</option>
+                                                    <option value="ADD">ADD</option>
+                                                    <option value="ADDD">ADDD</option>
+                                                    <option value="BEQ">BEQ</option>
+                                                    <option value="BNEZ">BNEZ</option>
+                                                    <option value="DADDUI">DADDUI</option>
+                                                    <option value="DIVD">DIVD</option>
+                                                    <option value="LD">LD</option>
+                                                    <option value="MULTD">MULTD</option>
+                                                    <option value="SD">SD</option>
+                                                    <option value="SUBD">SUBD</option>
+                                                </Form.Select>
                                             </td>
                                             <td>
                                                 <Form.Control
                                                     className="form-control"
                                                     type="text"
-                                                    name={r}
-                                                    id={r}
+                                                    name={`formNameR{i}`}
+                                                    id={`formIdR{i}`}
                                                     size="3"
                                                     maxLength="3"
                                                 />
@@ -107,8 +98,8 @@ export default function Home() {
                                                 <Form.Control
                                                     className="form-control"
                                                     type="text"
-                                                    name={s}
-                                                    id={s}
+                                                    name={`formNameS{i}`}
+                                                    id={`formIdS{i}`}
                                                     size="3"
                                                     maxLength="5"
                                                 />
@@ -117,8 +108,8 @@ export default function Home() {
                                                 <Form.Control
                                                     className="form-control"
                                                     type="text"
-                                                    name={t}
-                                                    id={t}
+                                                    name={`formNameT{i}`}
+                                                    id={`formIdT{i}`}
                                                     size="3"
                                                     maxLength="3"
                                                 />
