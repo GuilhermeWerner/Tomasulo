@@ -6,7 +6,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 export default function Home() {
     const [instructionStatus, setInstructionStatus] = useState([]);
-  
+
     const geraTabelaParaInserirInstrucoes = (nInst) => {
         let tabela = [];
         for (let i = 0; i < nInst; i++) {
@@ -66,7 +66,7 @@ export default function Home() {
         }
         return tabela;
     };
-  
+
     const handleGenerateTable = (event) => {
         const nInst = event.target.value;
         setInstructionStatus(geraTabelaParaInserirInstrucoes(nInst));
@@ -105,7 +105,7 @@ export default function Home() {
                     </Row>
                     <Row>
                         <Col>
-                            <Table bordered striped>
+                            <Table bordered>
                                 <thead>
                                     <tr>
                                         <th>Instrução</th>
