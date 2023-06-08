@@ -11,8 +11,20 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button';
+import { useRouter } from 'next/router';
+import { useContext } from 'react';
+import { ProgramContext } from '../src/ProgramContext';
 
 export default function Home() {
+    const router = useRouter();
+    const { updateProgram } = useContext(ProgramContext);
+
+    const handleClick = () => {
+        const program = { name: 'John', age: 25 };
+        updateProgram(program);
+        router.push('/runner');
+    };
+
     const [instructionStatus, setInstructionStatus] = useState([]);
 
     const geraTabelaParaInserirInstrucoes = (nInst) => {
@@ -109,9 +121,7 @@ export default function Home() {
                             <h3>Instructions</h3>
                         </Col>
                         <Col className="text-end">
-                            <Link href="/runner">
-                                <Button className="ms-4" variant="primary">Execute</Button>
-                            </Link>
+                            <Button className="ms-4" variant="primary" onClick={handleClick}>Execute</Button>
                         </Col>
                     </Row>
                     <Row className="mb-3">

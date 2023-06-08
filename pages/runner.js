@@ -9,8 +9,12 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import { useContext } from 'react';
+import { ProgramContext } from '../src/ProgramContext';
 
 export default function Home() {
+    const { program } = useContext(ProgramContext);
+
     let baseI = {
         issue: null,
         exeCompleta: null,
