@@ -25,75 +25,7 @@ export default function Home() {
         router.push('/runner');
     };
 
-    const [instructionStatus, setInstructionStatus] = useState([]);
-
-    const geraTabelaParaInserirInstrucoes = (nInst) => {
-        let tabela = [];
-
-        for (let i = 0; i < nInst; i++) {
-            let d = "D" + i;
-            let r = "R" + i;
-            let s = "S" + i;
-            let t = "T" + i;
-
-            tabela.push(
-                <tr key={i}>
-                    <td>
-                        <select className="form-control" size="1" name={d} id={d}>
-                            <option value="">Operand</option>
-                            <option value="ADD">ADD</option>
-                            <option value="ADDD">ADDD</option>
-                            <option value="BEQ">BEQ</option>
-                            <option value="BNEZ">BNEZ</option>
-                            <option value="DADDUI">DADDUI</option>
-                            <option value="DIVD">DIVD</option>
-                            <option value="LD">LD</option>
-                            <option value="MULTD">MULTD</option>
-                            <option value="SD">SD</option>
-                            <option value="SUBD">SUBD</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input
-                            className="form-control"
-                            type="text"
-                            name={r}
-                            id={r}
-                            size="3"
-                            maxLength="3"
-                        />
-                    </td>
-                    <td>
-                        <input
-                            className="form-control"
-                            type="text"
-                            name={s}
-                            id={s}
-                            size="3"
-                            maxLength="5"
-                        />
-                    </td>
-                    <td>
-                        <input
-                            className="form-control"
-                            type="text"
-                            name={t}
-                            id={t}
-                            size="3"
-                            maxLength="3"
-                        />
-                    </td>
-                </tr>
-            );
-        }
-
-        return tabela;
-    };
-
-    const handleGenerateTable = (event) => {
-        const nInst = event.target.value;
-        setInstructionStatus(geraTabelaParaInserirInstrucoes(nInst));
-    };
+    const [instructionList, setInstructionList] = useState([]);
 
     return (
         <>
@@ -130,13 +62,12 @@ export default function Home() {
                                 className="form-control-sm"
                                 type="number"
                                 placeholder="Select number of instructions"
-                                onChange={handleGenerateTable}
                             />
                         </Col>
                     </Row>
-                    <Row>
+                    <Row className="row my-4">
                         <Col>
-                            <Table bordered>
+                            <Table bordered hover>
                                 <thead>
                                     <tr>
                                         <th>Op</th>
@@ -146,7 +77,54 @@ export default function Home() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {instructionStatus}
+                                    {instructionList.map((instr, index) => (
+                                        <tr>
+                                            <td>{`${instr.instrucao.operacao} ${instr.instrucao.registradorR} ${instr.instrucao.registradorS} ${instr.instrucao.registradorT}`}</td>
+                                            <td>
+                                                <option value="">Operand</option>
+                                                <option value="ADD">ADD</option>
+                                                <option value="ADDD">ADDD</option>
+                                                <option value="BEQ">BEQ</option>
+                                                <option value="BNEZ">BNEZ</option>
+                                                <option value="DADDUI">DADDUI</option>
+                                                <option value="DIVD">DIVD</option>
+                                                <option value="LD">LD</option>
+                                                <option value="MULTD">MULTD</option>
+                                                <option value="SD">SD</option>
+                                                <option value="SUBD">SUBD</option>
+                                            </td>
+                                            <td>
+                                                <Form.Control
+                                                    className="form-control"
+                                                    type="text"
+                                                    name={r}
+                                                    id={r}
+                                                    size="3"
+                                                    maxLength="3"
+                                                />
+                                            </td>
+                                            <td>
+                                                <Form.Control
+                                                    className="form-control"
+                                                    type="text"
+                                                    name={s}
+                                                    id={s}
+                                                    size="3"
+                                                    maxLength="5"
+                                                />
+                                            </td>
+                                            <td>
+                                                <Form.Control
+                                                    className="form-control"
+                                                    type="text"
+                                                    name={t}
+                                                    id={t}
+                                                    size="3"
+                                                    maxLength="3"
+                                                />
+                                            </td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </Table>
                         </Col>
