@@ -642,7 +642,6 @@ export default function Home() {
                             </Table>
                         </Col>
                     </Row>
-
                     <Row className="row my-4">
                         <Col>
                             <div className="my-4">

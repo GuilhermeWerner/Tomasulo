@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table'
 import { useState } from 'react';
@@ -16,16 +17,18 @@ export default function Home() {
 
     const geraTabelaParaInserirInstrucoes = (nInst) => {
         let tabela = [];
+
         for (let i = 0; i < nInst; i++) {
             let d = "D" + i;
             let r = "R" + i;
             let s = "S" + i;
             let t = "T" + i;
+
             tabela.push(
                 <tr key={i}>
                     <td>
                         <select className="form-control" size="1" name={d} id={d}>
-                            <option value="">Instrução</option>
+                            <option value="">Operand</option>
                             <option value="ADD">ADD</option>
                             <option value="ADDD">ADDD</option>
                             <option value="BEQ">BEQ</option>
@@ -71,6 +74,7 @@ export default function Home() {
                 </tr>
             );
         }
+
         return tabela;
     };
 
@@ -100,17 +104,22 @@ export default function Home() {
             </Navbar>
             <main>
                 <Container>
-                    <Row>
-                        <div className="my-4">
-                            <h3>Lista de Instruções</h3>
-                        </div>
+                    <Row className="row my-4">
+                        <Col>
+                            <h3>Instructions</h3>
+                        </Col>
+                        <Col className="text-end">
+                            <Link href="/runner">
+                                <Button className="ms-4" variant="primary">Execute</Button>
+                            </Link>
+                        </Col>
                     </Row>
                     <Row className="mb-3">
                         <Col>
                             <Form.Control
                                 className="form-control-sm"
                                 type="number"
-                                placeholder="Selecione o número de instruções"
+                                placeholder="Select number of instructions"
                                 onChange={handleGenerateTable}
                             />
                         </Col>
@@ -120,10 +129,10 @@ export default function Home() {
                             <Table bordered>
                                 <thead>
                                     <tr>
-                                        <th>Instrução</th>
-                                        <th>Operando 3</th>
-                                        <th>Operando 2</th>
-                                        <th>Operando 1</th>
+                                        <th>Op</th>
+                                        <th>RD</th>
+                                        <th>RS</th>
+                                        <th>RT</th>
                                     </tr>
                                 </thead>
                                 <tbody>
