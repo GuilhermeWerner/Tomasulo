@@ -539,9 +539,10 @@ export default function Home() {
                             <Button className="ms-4" variant="primary" onClick={nextCycle}>Próximo</Button>
                         </Col>
                     </Row>
-                    <Row className="row my-4">
+                    <hr />
+                    <Row>
                         <Col>
-                            <div className="my-4">
+                            <div className="mb-4">
                                 <h3>Instruction Status</h3>
                             </div>
                             <Table bordered hover>
@@ -566,7 +567,7 @@ export default function Home() {
                             </Table>
                         </Col>
                         <Col>
-                            <div className="my-4">
+                            <div className="mb-4">
                                 <h3>Reorder Buffer</h3>
                             </div>
                             <Table bordered hover>
@@ -595,9 +596,9 @@ export default function Home() {
                             </Table>
                         </Col>
                     </Row>
-                    <Row className="row my-4">
+                    <Row>
                         <Col>
-                            <div className="my-4">
+                            <div className="mb-4">
                                 <h3>Reservation Stations (Load/Store)</h3>
                             </div>
                             <Table bordered hover>
@@ -624,7 +625,7 @@ export default function Home() {
                             </Table>
                         </Col>
                         <Col>
-                            <div className="my-4">
+                            <div className="mb-4">
                                 <h3>Reservation Stations</h3>
                             </div>
                             <Table bordered hover>
@@ -657,7 +658,7 @@ export default function Home() {
                             </Table>
                         </Col>
                     </Row>
-                    <div className="my-4">
+                    <div className="mb-4">
                         <h3>Registers Status</h3>
                     </div>
                     <Table bordered hover>
