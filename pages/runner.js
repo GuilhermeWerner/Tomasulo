@@ -15,6 +15,8 @@ import { ProgramContext } from '../src/ProgramContext';
 export default function Home() {
     const { program } = useContext(ProgramContext);
 
+    console.log(JSON.stringify(program));
+
     let baseI = {
         issue: null,
         exeCompleta: null,
@@ -22,68 +24,15 @@ export default function Home() {
         busy: false,
     }
 
-    let instructions = [
-        {
+    let instructions = [];
+
+    for (let i = 0; i < program.length; i++) {
+        instructions[i] = {
             posicao: 0,
-            instrucao: {
-                operacao: "LD",
-                registradorR: "F6",
-                registradorS: "32",
-                registradorT: "R1",
-            },
+            instrucao: program[i],
             ...baseI,
-        },
-        {
-            posicao: 1,
-            instrucao: {
-                operacao: "LD",
-                registradorR: "F2",
-                registradorS: "45",
-                registradorT: "R3",
-            },
-            ...baseI,
-        },
-        {
-            posicao: 2,
-            instrucao: {
-                operacao: "MULTD",
-                registradorR: "F0",
-                registradorS: "F2",
-                registradorT: "F4",
-            },
-            ...baseI,
-        },
-        {
-            posicao: 3,
-            instrucao: {
-                operacao: "SUBD",
-                registradorR: "F8",
-                registradorS: "F6",
-                registradorT: "F2",
-            },
-            ...baseI,
-        },
-        {
-            posicao: 4,
-            instrucao: {
-                operacao: "DIVD",
-                registradorR: "F10",
-                registradorS: "F0",
-                registradorT: "F6",
-            },
-            ...baseI,
-        },
-        {
-            posicao: 5,
-            instrucao: {
-                operacao: "ADDD",
-                registradorR: "F6",
-                registradorS: "F8",
-                registradorT: "F2",
-            },
-            ...baseI,
-        }
-    ];
+        };
+    }
 
     let baseFu = {
         instrucao: null,
