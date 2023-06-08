@@ -28,7 +28,7 @@ export default function Home() {
 
     for (let i = 0; i < program.length; i++) {
         instructions[i] = {
-            posicao: 0,
+            posicao: i + 1,
             instrucao: program[i],
             ...baseI,
         };
@@ -144,11 +144,17 @@ export default function Home() {
         }
     ];
 
-    let [clock, setClock] = useState(0);
+    let registers = [];
+
+    for (let i = 0; i < 10; i++) {
+        registers[i] = null;
+    }
+
+    let [clock, setClock] = useState(1);
     let [instructionStatus, setInstructionStatus] = useState(instructions);
     let [functionalUnits, setFunctionalUnits] = useState(fUnites);
     let [memoryUnits, setMmoryUnits] = useState(mUnites);
-    let [registerStatus, setRegisterStatus] = useState([]);
+    let [registerStatus, setRegisterStatus] = useState(registers);
 
     function fetchInstruction() {
         for (let i = 0; i < instructionStatus.length; i++) {
@@ -257,13 +263,13 @@ export default function Home() {
         let reg_k_inst;
 
         if ((instrucao.operacao === 'BNEZ') || (instrucao.operacao === 'BEQ')) {
-            reg_j = registerStatus[instrucao.registradorR];
-            reg_k = registerStatus[instrucao.registradorS];
+            reg_j = registerStatus[instrucao.registradorR.replace('R','').replace('F','')];
+            reg_k = registerStatus[instrucao.registradorS.replace('R','').replace('F','')];
             reg_j_inst = instrucao.registradorR;
             reg_k_inst = instrucao.registradorS;
         } else {
-            reg_j = registerStatus[instrucao.registradorS];
-            reg_k = registerStatus[instrucao.registradorT];
+            reg_j = registerStatus[instrucao.registradorS.replace('R','').replace('F','')];
+            reg_k = registerStatus[instrucao.registradorT.replace('R','').replace('F','')];
             reg_j_inst = instrucao.registradorS;
             reg_k_inst = instrucao.registradorT;
         }
@@ -305,7 +311,7 @@ export default function Home() {
         uf.qj = null;
 
         if (instrucao.operacao === 'SD') {
-            let UFQueTemQueEsperar = registerStatus[instrucao.registradorR];
+            let UFQueTemQueEsperar = registerStatus[instrucao.registradorR.replace('R','').replace('F','')];
 
             if ((UFQueTemQueEsperar in functionalUnits) || (UFQueTemQueEsperar in memoryUnits)) {
                 uf.qi = UFQueTemQueEsperar;
@@ -315,7 +321,7 @@ export default function Home() {
             }
         }
 
-        let UFintQueTemQueEsperar = registerStatus[instrucao.registradorT];
+        let UFintQueTemQueEsperar = registerStatus[instrucao.registradorT.replace('R','').replace('F','')];
 
         if ((UFintQueTemQueEsperar in functionalUnits) || (UFintQueTemQueEsperar in memoryUnits)) {
             uf.qj = UFintQueTemQueEsperar;
@@ -326,7 +332,7 @@ export default function Home() {
     }
 
     function writeRegister(instrucao, ufNome) {
-        registerStatus[instrucao.registradorR] = ufNome;
+        registerStatus[instrucao.registradorR.replace('R','').replace('F','')] = ufNome;
         setRegisterStatus(registerStatus);
     }
 
@@ -453,10 +459,10 @@ export default function Home() {
                 if (ufMem.tempo === -1) {
                     ufMem.estadoInstrucao.write = clock;
 
-                    let valorReg = registerStatus[ufMem.instrucao.registradorR];
+                    let valorReg = registerStatus[ufMem.instrucao.registradorR.replace('R','').replace('F','')];
 
                     if (valorReg === ufMem.nome) {
-                        registerStatus[ufMem.instrucao.registradorR] = 'VAL(' + ufMem.nome + ')';
+                        registerStatus[ufMem.instrucao.registradorR.replace('R','').replace('F','')] = 'VAL(' + ufMem.nome + ')';
                     }
 
                     releaseWaitingUnity(ufMem);
@@ -471,10 +477,10 @@ export default function Home() {
             if (uf.ocupado && uf.tempo === -1) {
                 uf.estadoInstrucao.write = clock;
 
-                let valorReg = registerStatus[uf.instrucao.registradorR];
+                let valorReg = registerStatus[uf.instrucao.registradorR.replace('R','').replace('F','')];
 
                 if (valorReg === uf.nome) {
-                    registerStatus[uf.instrucao.registradorR] = 'VAL(' + uf.nome + ')';
+                    registerStatus[uf.instrucao.registradorR.replace('R','').replace('F','')] = 'VAL(' + uf.nome + ')';
                 }
 
                 releaseWaitingUnity(uf);
@@ -664,7 +670,6 @@ export default function Home() {
                     <Table bordered hover>
                         <thead>
                             <tr>
-                                <th>Field</th>
                                 <th>F0</th>
                                 <th>F1</th>
                                 <th>F2</th>
@@ -675,37 +680,13 @@ export default function Home() {
                                 <th>F7</th>
                                 <th>F8</th>
                                 <th>F9</th>
-                                <th>F10</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Reorder #</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Busy</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                {registerStatus.map((val, idx) => (
+                                    <td>{val}</td>
+                                ))}
                             </tr>
                         </tbody>
                     </Table>
