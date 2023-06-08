@@ -1,10 +1,76 @@
 import Head from 'next/head'
 import Form from 'react-bootstrap/Form';
+import Table from 'react-bootstrap/Table'
 import { useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 export default function Home() {
     const [instructionStatus, setInstructionStatus] = useState([]);
+  
+    const geraTabelaParaInserirInstrucoes = (nInst) => {
+        let tabela = [];
+        for (let i = 0; i < nInst; i++) {
+            let d = "D" + i;
+            let r = "R" + i;
+            let s = "S" + i;
+            let t = "T" + i;
+            tabela.push(
+                <tr key={i}>
+                    <td>
+                        <select className="form-control" size="1" name={d} id={d}>
+                            <option value="">Instrução</option>
+                            <option value="ADD">ADD</option>
+                            <option value="ADDD">ADDD</option>
+                            <option value="BEQ">BEQ</option>
+                            <option value="BNEZ">BNEZ</option>
+                            <option value="DADDUI">DADDUI</option>
+                            <option value="DIVD">DIVD</option>
+                            <option value="LD">LD</option>
+                            <option value="MULTD">MULTD</option>
+                            <option value="SD">SD</option>
+                            <option value="SUBD">SUBD</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input
+                            className="form-control"
+                            type="text"
+                            name={r}
+                            id={r}
+                            size="3"
+                            maxLength="3"
+                        />
+                    </td>
+                    <td>
+                        <input
+                            className="form-control"
+                            type="text"
+                            name={s}
+                            id={s}
+                            size="3"
+                            maxLength="5"
+                        />
+                    </td>
+                    <td>
+                        <input
+                            className="form-control"
+                            type="text"
+                            name={t}
+                            id={t}
+                            size="3"
+                            maxLength="3"
+                        />
+                    </td>
+                </tr>
+            );
+        }
+        return tabela;
+    };
+  
+    const handleGenerateTable = (event) => {
+        const nInst = event.target.value;
+        setInstructionStatus(geraTabelaParaInserirInstrucoes(nInst));
+    };
 
     return (
         <>
@@ -22,92 +88,38 @@ export default function Home() {
             </Head>
             <main>
                 <Container>
-                    <Form.Select aria-label="Default select example">
-                        <option>Instrução 0</option>
-                        <option value="ADD">ADD</option>
-                        <option value="ADDD">ADDD</option>
-                        <option value="BEQ">BEQ</option>
-                        <option value="BNEZ">BNEZ</option>
-                        <option value="DADDUI">DADDUI</option>
-                        <option value="DIVD">DIVD</option>
-                        <option value="LD">LD</option>
-                        <option value="MULTD">MULTD</option>
-                        <option value="SD">SD</option>
-                        <option value="SUBD">SUBD</option>
-                    </Form.Select>
-                    <Form.Select aria-label="Default select example">
-                        <option>Instrução 1</option>
-                        <option value="ADD">ADD</option>
-                        <option value="ADDD">ADDD</option>
-                        <option value="BEQ">BEQ</option>
-                        <option value="BNEZ">BNEZ</option>
-                        <option value="DADDUI">DADDUI</option>
-                        <option value="DIVD">DIVD</option>
-                        <option value="LD">LD</option>
-                        <option value="MULTD">MULTD</option>
-                        <option value="SD">SD</option>
-                        <option value="SUBD">SUBD</option>
-                    </Form.Select>
-                    <Form.Select aria-label="Default select example">
-                        <option>Instrução 2</option>
-                        <option value="ADD">ADD</option>
-                        <option value="ADDD">ADDD</option>
-                        <option value="BEQ">BEQ</option>
-                        <option value="BNEZ">BNEZ</option>
-                        <option value="DADDUI">DADDUI</option>
-                        <option value="DIVD">DIVD</option>
-                        <option value="LD">LD</option>
-                        <option value="MULTD">MULTD</option>
-                        <option value="SD">SD</option>
-                        <option value="SUBD">SUBD</option>
-                    </Form.Select>
-                    <Form.Select aria-label="Default select example">
-                        <option>Instrução 3</option>
-                        <option value="ADD">ADD</option>
-                        <option value="ADDD">ADDD</option>
-                        <option value="BEQ">BEQ</option>
-                        <option value="BNEZ">BNEZ</option>
-                        <option value="DADDUI">DADDUI</option>
-                        <option value="DIVD">DIVD</option>
-                        <option value="LD">LD</option>
-                        <option value="MULTD">MULTD</option>
-                        <option value="SD">SD</option>
-                        <option value="SUBD">SUBD</option>
-                    </Form.Select>
-                    <Form.Select aria-label="Default select example">
-                        <option>Instrução 4</option>
-                        <option value="ADD">ADD</option>
-                        <option value="ADDD">ADDD</option>
-                        <option value="BEQ">BEQ</option>
-                        <option value="BNEZ">BNEZ</option>
-                        <option value="DADDUI">DADDUI</option>
-                        <option value="DIVD">DIVD</option>
-                        <option value="LD">LD</option>
-                        <option value="MULTD">MULTD</option>
-                        <option value="SD">SD</option>
-                        <option value="SUBD">SUBD</option>
-                    </Form.Select>
-                    <Form.Select aria-label="Default select example">
-                        <option>Instrução 5</option>
-                        <option value="ADD">ADD</option>
-                        <option value="ADDD">ADDD</option>
-                        <option value="BEQ">BEQ</option>
-                        <option value="BNEZ">BNEZ</option>
-                        <option value="DADDUI">DADDUI</option>
-                        <option value="DIVD">DIVD</option>
-                        <option value="LD">LD</option>
-                        <option value="MULTD">MULTD</option>
-                        <option value="SD">SD</option>
-                        <option value="SUBD">SUBD</option>
-                    </Form.Select>
-
-
-                    <Form.Label htmlFor="inputOperand"></Form.Label>
-                    <Form.Control
-                        type="text"
-                        id="inputOperand"
-                        aria-describedby="passwordHelpBlock"
-                    />
+                    <Row>
+                        <div className="my-4">
+                            <h3>Lista de Instruções</h3>
+                        </div>
+                    </Row>
+                    <Row className="mb-3">
+                        <Col>
+                            <Form.Control
+                                className="form-control-sm"
+                                type="number"
+                                placeholder="Selecione o número de instruções"
+                                onChange={handleGenerateTable}
+                            />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Table bordered striped>
+                                <thead>
+                                    <tr>
+                                        <th>Instrução</th>
+                                        <th>Operando 3</th>
+                                        <th>Operando 2</th>
+                                        <th>Operando 1</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {instructionStatus}
+                                </tbody>
+                            </Table>
+                        </Col>
+                    </Row>
                 </Container>
             </main>
         </>
