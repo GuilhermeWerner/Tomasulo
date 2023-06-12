@@ -28,6 +28,7 @@ export default function Home() {
         router.push('/runner');
     };
 
+    let instructionList = [
         {
             operacao: "LD",
             registradorR: "F6",
