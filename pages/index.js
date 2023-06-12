@@ -179,7 +179,7 @@ export default function Home() {
                         )}
                     </Formik>
                     <div className="my-4 text-center">
-                        <span className="text-muted">Caio Arâes, David Freitas, Guilherme Werner</span>
+                        <span className="text-muted">Caio Arães, David Freitas, Guilherme Werner</span>
                     </div>
                 </Container>
             </main>

@@ -516,6 +516,31 @@ export default function Home() {
         return "Issue";
     }
 
+    function reorderBufferValueFormat(instr) {
+        switch (instr.instrucao.operacao) {
+            case 'ADDD':
+                return <span>{`${instr.instrucao.registradorS} + ${instr.instrucao.registradorT}`}</span>;
+            case 'SUBD':
+                return <span>{`${instr.instrucao.registradorS} - ${instr.instrucao.registradorT}`}</span>;
+            case 'MULTD':
+                return <span>{`${instr.instrucao.registradorS} * ${instr.instrucao.registradorT}`}</span>;
+            case 'DIVD':
+                return <span>{`${instr.instrucao.registradorS} / ${instr.instrucao.registradorT}`}</span>;
+            case 'LD':
+                return <span>{`Mem[${instr.instrucao.registradorS} + ${instr.instrucao.registradorT}]`}</span>;
+            case 'SD':
+                return <span>{`Mem[${instr.instrucao.registradorS} + ${instr.instrucao.registradorT}]`}</span>;
+            case 'ADD':
+                return <span>{`${instr.instrucao.registradorS} + ${instr.instrucao.registradorT}`}</span>;
+            case 'DADDUI':
+                return <span>{`${instr.instrucao.registradorS} + ${instr.instrucao.registradorT}`}</span>;
+            case 'BEQ':
+                return <span>{`${instr.instrucao.registradorR} == ${instr.instrucao.registradorS}`}</span>;
+            case 'BNEZ':
+                return <span>{`${instr.instrucao.registradorR} != ${instr.instrucao.registradorS}`}</span>;
+        }
+    }
+
     return (
         <>
             <Head>
@@ -595,7 +620,7 @@ export default function Home() {
                                             <td>{`${instr.instrucao.operacao} ${instr.instrucao.registradorR} ${instr.instrucao.registradorS} ${instr.instrucao.registradorT}`}</td>
                                             <td>{getFormatedState(instr)}</td>
                                             <td>{instr.instrucao.registradorR}</td>
-                                            <td>Mem[{instr.instrucao.registradorS} + {instr.instrucao.registradorT}]</td>
+                                            <td>{reorderBufferValueFormat(instr)}</td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -691,7 +716,7 @@ export default function Home() {
                         </tbody>
                     </Table>
                     <div className="my-4 text-center">
-                        <span className="text-muted">Caio Arâes, David Freitas, Guilherme Werner</span>
+                        <span className="text-muted">Caio Arães, David Freitas, Guilherme Werner</span>
                     </div>
                 </Container>
             </main>
