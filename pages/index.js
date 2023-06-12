@@ -28,6 +28,9 @@ export default function Home() {
         router.push('/runner');
     };
 
+    let instructionList = [];
+
+    let exemplo1 = [
         {
             operacao: "LD",
             registradorR: "F6",
@@ -66,6 +69,12 @@ export default function Home() {
         }
     ];
 
+    const handleSelect = (eventKey) => {
+        switch (eventKey) {
+
+        }
+    }
+
     return (
         <>
             <Head>
@@ -101,6 +110,17 @@ export default function Home() {
                                         <Button className="ms-4" variant="primary" type="submit">Execute</Button>
                                     </Col>
                                 </Row>
+                                <Nav variant="pills" defaultActiveKey="1" onSelect={(eventKey) => handleSelect(eventKey, handleChange)}>
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="1">Exemplo 1</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="2">Exemplo 2</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="3">Exemplo 3</Nav.Link>
+                                    </Nav.Item>
+                                </Nav>
                                 <Row className="row my-4">
                                     <Col>
                                         <Table bordered hover>
