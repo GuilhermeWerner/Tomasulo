@@ -32,13 +32,13 @@ export default function Home() {
         {
             operacao: "LD",
             registradorR: "F6",
-            registradorS: "34",
-            registradorT: "R1",
+            registradorS: "32",
+            registradorT: "R2",
         },
         {
             operacao: "LD",
             registradorR: "F2",
-            registradorS: "45",
+            registradorS: "44",
             registradorT: "R3",
         },
         {
@@ -50,8 +50,8 @@ export default function Home() {
         {
             operacao: "SUBD",
             registradorR: "F8",
-            registradorS: "F6",
-            registradorT: "F2",
+            registradorS: "F2",
+            registradorT: "F6",
         },
         {
             operacao: "DIVD",
@@ -104,7 +104,7 @@ export default function Home() {
                                 </Row>
                                 <Row className="row my-4">
                                     <Col>
-                                        <Table bordered hover>
+                                        <Table striped bordered hover>
                                             <thead>
                                                 <tr>
                                                     <th>OP</th>
