@@ -104,7 +104,7 @@ export default function Home() {
                                 </Row>
                                 <Row className="row my-4">
                                     <Col>
-                                        <Table bordered hover>
+                                        <Table striped bordered hover>
                                             <thead>
                                                 <tr>
                                                     <th>OP</th>

@@ -549,34 +549,9 @@ export default function Home() {
                     <Row>
                         <Col>
                             <div className="mb-4">
-                                <h3>Instruction Status</h3>
-                            </div>
-                            <Table bordered hover>
-                                <thead>
-                                    <tr>
-                                        <th>Instruction</th>
-                                        <th>Issued</th>
-                                        <th>Execute</th>
-                                        <th>Write Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {instructionStatus.map((instr, index) => (
-                                        <tr>
-                                            <td>{`${instr.instrucao.operacao} ${instr.instrucao.registradorR} ${instr.instrucao.registradorS} ${instr.instrucao.registradorT}`}</td>
-                                            <td>{instr.issue}</td>
-                                            <td>{instr.exeCompleta}</td>
-                                            <td>{instr.write}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </Table>
-                        </Col>
-                        <Col>
-                            <div className="mb-4">
                                 <h3>Reorder Buffer</h3>
                             </div>
-                            <Table bordered hover>
+                            <Table striped bordered hover>
                                 <thead>
                                     <tr>
                                         <th>Entry</th>
@@ -601,13 +576,68 @@ export default function Home() {
                                 </tbody>
                             </Table>
                         </Col>
+                        <Col>
+                            <div className="mb-4">
+                                <h3>Registers Status</h3>
+                            </div>
+                            <Table striped bordered hover>
+                                <thead>
+                                    <tr>
+                                        <th>F0</th>
+                                        <th>F1</th>
+                                        <th>F2</th>
+                                        <th>F3</th>
+                                        <th>F4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        {[0, 1, 2, 3, 4].map((i, j) => (
+                                            <td>{registerStatus[i]}</td>
+                                        ))}
+                                    </tr>
+                                </tbody>
+                                <thead>
+                                    <tr>
+                                        <th>F5</th>
+                                        <th>F6</th>
+                                        <th>F7</th>
+                                        <th>F8</th>
+                                        <th>F9</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        {[5, 6, 7, 8, 9].map((i, j) => (
+                                            <td>{registerStatus[i]}</td>
+                                        ))}
+                                    </tr>
+                                </tbody>
+                                <thead>
+                                    <tr>
+                                        <th>F10</th>
+                                        <th>F11</th>
+                                        <th>F12</th>
+                                        <th>F13</th>
+                                        <th>F14</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        {[10, 11, 12, 13, 14].map((i, j) => (
+                                            <td>{registerStatus[i]}</td>
+                                        ))}
+                                    </tr>
+                                </tbody>
+                            </Table>
+                        </Col>
                     </Row>
                     <Row>
                         <Col>
                             <div className="mb-4">
                                 <h3>Reservation Stations (Load/Store)</h3>
                             </div>
-                            <Table bordered hover>
+                            <Table striped bordered hover>
                                 <thead>
                                     <tr>
                                         <th>Time</th>
@@ -634,7 +664,7 @@ export default function Home() {
                             <div className="mb-4">
                                 <h3>Reservation Stations</h3>
                             </div>
-                            <Table bordered hover>
+                            <Table striped bordered hover>
                                 <thead>
                                     <tr>
                                         <th>Time</th>
@@ -664,32 +694,6 @@ export default function Home() {
                             </Table>
                         </Col>
                     </Row>
-                    <div className="mb-4">
-                        <h3>Registers Status</h3>
-                    </div>
-                    <Table bordered hover>
-                        <thead>
-                            <tr>
-                                <th>F0</th>
-                                <th>F1</th>
-                                <th>F2</th>
-                                <th>F3</th>
-                                <th>F4</th>
-                                <th>F5</th>
-                                <th>F6</th>
-                                <th>F7</th>
-                                <th>F8</th>
-                                <th>F9</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                {registerStatus.map((val, idx) => (
-                                    <td>{val}</td>
-                                ))}
-                            </tr>
-                        </tbody>
-                    </Table>
                     <div className="my-4 text-center">
                         <span className="text-muted">Caio Arâes, David Freitas, Guilherme Werner</span>
                     </div>
