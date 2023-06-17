@@ -31,39 +31,39 @@ export default function Home() {
     let instructionList = [
         {
             operacao: "LD",
-            registradorR: "F6",
+            registradorR: "R6",
             registradorS: "32",
             registradorT: "R2",
         },
         {
             operacao: "LD",
-            registradorR: "F2",
+            registradorR: "R2",
             registradorS: "44",
             registradorT: "R3",
         },
         {
-            operacao: "MULTD",
-            registradorR: "F0",
-            registradorS: "F2",
-            registradorT: "F4",
+            operacao: "MULT",
+            registradorR: "R0",
+            registradorS: "R2",
+            registradorT: "R4",
         },
         {
-            operacao: "SUBD",
-            registradorR: "F8",
-            registradorS: "F2",
-            registradorT: "F6",
+            operacao: "SUB",
+            registradorR: "R8",
+            registradorS: "R2",
+            registradorT: "R6",
         },
         {
-            operacao: "DIVD",
-            registradorR: "F10",
-            registradorS: "F0",
-            registradorT: "F6",
+            operacao: "DIV",
+            registradorR: "R10",
+            registradorS: "R0",
+            registradorT: "R6",
         },
         {
-            operacao: "ADDD",
-            registradorR: "F6",
-            registradorS: "F8",
-            registradorT: "F2",
+            operacao: "ADD",
+            registradorR: "R6",
+            registradorS: "R8",
+            registradorT: "R2",
         }
     ];
 
@@ -125,15 +125,13 @@ export default function Home() {
                                                             >
                                                                 <option value="">-- Select --</option>
                                                                 <option value="ADD">ADD</option>
-                                                                <option value="ADDD">ADDD</option>
                                                                 <option value="BEQ">BEQ</option>
                                                                 <option value="BNEZ">BNEZ</option>
-                                                                <option value="DADDUI">DADDUI</option>
-                                                                <option value="DIVD">DIVD</option>
+                                                                <option value="DIV">DIV</option>
                                                                 <option value="LD">LD</option>
-                                                                <option value="MULTD">MULTD</option>
+                                                                <option value="MULT">MULT</option>
                                                                 <option value="SD">SD</option>
-                                                                <option value="SUBD">SUBD</option>
+                                                                <option value="SUB">SUB</option>
                                                             </Form.Select>
                                                         </td>
                                                         <td>

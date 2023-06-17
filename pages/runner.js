@@ -174,26 +174,22 @@ export default function Home() {
         console.log("getFunctionalUnity:", instr.operacao);
 
         switch (instr.operacao) {
-            case 'ADDD':
-                return 'Add'
-            case 'SUBD':
-                return 'Add'
-            case 'MULTD':
-                return 'Mult'
-            case 'DIVD':
-                return 'Mult'
-            case 'LD':
-                return 'Load'
-            case 'SD':
-                return 'Store'
             case 'ADD':
-                return 'Integer'
-            case 'DADDUI':
-                return 'Integer'
+                return 'Add'
             case 'BEQ':
                 return 'Integer'
             case 'BNEZ':
                 return 'Integer'
+            case 'DIV':
+                return 'Mult'
+            case 'LD':
+                return 'Load'
+            case 'MULT':
+                return 'Mult'
+            case 'SD':
+                return 'Store'
+            case 'SUB':
+                return 'Add'
         }
     }
 
@@ -227,25 +223,21 @@ export default function Home() {
 
     function getCycles(instrucao) {
         switch (instrucao.operacao) {
-            case 'ADDD':
-                return 1;
-            case 'SUBD':
-                return 1;
-            case 'MULTD':
-                return 1;
-            case 'DIVD':
-                return 1;
-            case 'LD':
-                return 1;
-            case 'SD':
-                return 1;
             case 'ADD':
-                return 1;
-            case 'DADDUI':
                 return 1;
             case 'BEQ':
                 return 1;
             case 'BNEZ':
+                return 1;
+            case 'DIV':
+                return 1;
+            case 'LD':
+                return 1;
+            case 'MULT':
+                return 1;
+            case 'SD':
+                return 1;
+            case 'SUB':
                 return 1;
         }
     }
@@ -263,13 +255,13 @@ export default function Home() {
         let reg_k_inst;
 
         if ((instrucao.operacao === 'BNEZ') || (instrucao.operacao === 'BEQ')) {
-            reg_j = registerStatus[instrucao.registradorR.replace('R','').replace('F','')];
-            reg_k = registerStatus[instrucao.registradorS.replace('R','').replace('F','')];
+            reg_j = registerStatus[instrucao.registradorR.replace('R', '')];
+            reg_k = registerStatus[instrucao.registradorS.replace('R', '')];
             reg_j_inst = instrucao.registradorR;
             reg_k_inst = instrucao.registradorS;
         } else {
-            reg_j = registerStatus[instrucao.registradorS.replace('R','').replace('F','')];
-            reg_k = registerStatus[instrucao.registradorT.replace('R','').replace('F','')];
+            reg_j = registerStatus[instrucao.registradorS.replace('R', '')];
+            reg_k = registerStatus[instrucao.registradorT.replace('R', '')];
             reg_j_inst = instrucao.registradorS;
             reg_k_inst = instrucao.registradorT;
         }
@@ -311,7 +303,7 @@ export default function Home() {
         uf.qj = null;
 
         if (instrucao.operacao === 'SD') {
-            let UFQueTemQueEsperar = registerStatus[instrucao.registradorR.replace('R','').replace('F','')];
+            let UFQueTemQueEsperar = registerStatus[instrucao.registradorR.replace('R', '')];
 
             if ((UFQueTemQueEsperar in functionalUnits) || (UFQueTemQueEsperar in memoryUnits)) {
                 uf.qi = UFQueTemQueEsperar;
@@ -321,7 +313,7 @@ export default function Home() {
             }
         }
 
-        let UFintQueTemQueEsperar = registerStatus[instrucao.registradorT.replace('R','').replace('F','')];
+        let UFintQueTemQueEsperar = registerStatus[instrucao.registradorT.replace('R', '')];
 
         if ((UFintQueTemQueEsperar in functionalUnits) || (UFintQueTemQueEsperar in memoryUnits)) {
             uf.qj = UFintQueTemQueEsperar;
@@ -332,7 +324,7 @@ export default function Home() {
     }
 
     function writeRegister(instrucao, entry) {
-        registerStatus[instrucao.registradorR.replace('R','').replace('F','')] = entry;
+        registerStatus[instrucao.registradorR.replace('R', '')] = entry;
         setRegisterStatus(registerStatus);
     }
 
@@ -427,7 +419,6 @@ export default function Home() {
 
             if ((ufMem.ocupado) && (ufMem.qi === null) && (ufMem.qj === null)) {
                 ufMem.tempo = ufMem.tempo - 1;
-                console.log("estado Instrucao", ufMem.estadoInstrucao);
 
                 if (ufMem.tempo === 0) {
                     ufMem.estadoInstrucao.exeCompleta = clock;
@@ -459,10 +450,10 @@ export default function Home() {
                 if (ufMem.tempo === -1) {
                     ufMem.estadoInstrucao.write = clock;
 
-                    let valorReg = registerStatus[ufMem.instrucao.registradorR.replace('R','').replace('F','')];
+                    let valorReg = registerStatus[ufMem.instrucao.registradorR.replace('R', '')];
 
                     if (valorReg === ufMem.nome) {
-                        registerStatus[ufMem.instrucao.registradorR.replace('R','').replace('F','')] = 'VAL(' + ufMem.nome + ')';
+                        registerStatus[ufMem.instrucao.registradorR.replace('R', '')] = 'VAL(' + ufMem.nome + ')';
                     }
 
                     releaseWaitingUnity(ufMem);
@@ -477,10 +468,10 @@ export default function Home() {
             if (uf.ocupado && uf.tempo === -1) {
                 uf.estadoInstrucao.write = clock;
 
-                let valorReg = registerStatus[uf.instrucao.registradorR.replace('R','').replace('F','')];
+                let valorReg = registerStatus[uf.instrucao.registradorR.replace('R', '')];
 
                 if (valorReg === uf.nome) {
-                    registerStatus[uf.instrucao.registradorR.replace('R','').replace('F','')] = 'VAL(' + uf.nome + ')';
+                    registerStatus[uf.instrucao.registradorR.replace('R', '')] = 'VAL(' + uf.nome + ')';
                 }
 
                 releaseWaitingUnity(uf);
@@ -518,21 +509,17 @@ export default function Home() {
 
     function reorderBufferValueFormat(instr) {
         switch (instr.instrucao.operacao) {
-            case 'ADDD':
-                return <span>{`${instr.instrucao.registradorS} + ${instr.instrucao.registradorT}`}</span>;
-            case 'SUBD':
+            case 'SUB':
                 return <span>{`${instr.instrucao.registradorS} - ${instr.instrucao.registradorT}`}</span>;
-            case 'MULTD':
+            case 'MULT':
                 return <span>{`${instr.instrucao.registradorS} * ${instr.instrucao.registradorT}`}</span>;
-            case 'DIVD':
+            case 'DIV':
                 return <span>{`${instr.instrucao.registradorS} / ${instr.instrucao.registradorT}`}</span>;
             case 'LD':
                 return <span>{`Mem[${instr.instrucao.registradorS} + ${instr.instrucao.registradorT}]`}</span>;
             case 'SD':
                 return <span>{`Mem[${instr.instrucao.registradorS} + ${instr.instrucao.registradorT}]`}</span>;
             case 'ADD':
-                return <span>{`${instr.instrucao.registradorS} + ${instr.instrucao.registradorT}`}</span>;
-            case 'DADDUI':
                 return <span>{`${instr.instrucao.registradorS} + ${instr.instrucao.registradorT}`}</span>;
             case 'BEQ':
                 return <span>{`${instr.instrucao.registradorR} == ${instr.instrucao.registradorS}`}</span>;
@@ -608,11 +595,11 @@ export default function Home() {
                             <Table striped bordered hover>
                                 <thead>
                                     <tr>
-                                        <th>F0</th>
-                                        <th>F1</th>
-                                        <th>F2</th>
-                                        <th>F3</th>
-                                        <th>F4</th>
+                                        <th>R0</th>
+                                        <th>R1</th>
+                                        <th>R2</th>
+                                        <th>R3</th>
+                                        <th>R4</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -624,11 +611,11 @@ export default function Home() {
                                 </tbody>
                                 <thead>
                                     <tr>
-                                        <th>F5</th>
-                                        <th>F6</th>
-                                        <th>F7</th>
-                                        <th>F8</th>
-                                        <th>F9</th>
+                                        <th>R5</th>
+                                        <th>R6</th>
+                                        <th>R7</th>
+                                        <th>R8</th>
+                                        <th>R9</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -640,11 +627,11 @@ export default function Home() {
                                 </tbody>
                                 <thead>
                                     <tr>
-                                        <th>F10</th>
-                                        <th>F11</th>
-                                        <th>F12</th>
-                                        <th>F13</th>
-                                        <th>F14</th>
+                                        <th>R10</th>
+                                        <th>R11</th>
+                                        <th>R12</th>
+                                        <th>R13</th>
+                                        <th>R14</th>
                                     </tr>
                                 </thead>
                                 <tbody>
