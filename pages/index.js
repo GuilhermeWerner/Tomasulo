@@ -142,7 +142,7 @@ export default function Home() {
                                                                 type="text"
                                                                 name={`[${i}].registradorR`}
                                                                 size="3"
-                                                                maxLength="3"
+                                                                maxLength="10"
                                                                 value={values[i].registradorR}
                                                                 onChange={handleChange}
                                                             />
@@ -164,7 +164,7 @@ export default function Home() {
                                                                 type="text"
                                                                 name={`[${i}].registradorT`}
                                                                 size="3"
-                                                                maxLength="3"
+                                                                maxLength="10"
                                                                 value={values[i].registradorT}
                                                                 onChange={handleChange}
                                                             />

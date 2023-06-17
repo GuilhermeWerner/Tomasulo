@@ -331,8 +331,8 @@ export default function Home() {
         }
     }
 
-    function writeRegister(instrucao, ufNome) {
-        registerStatus[instrucao.registradorR.replace('R','').replace('F','')] = ufNome;
+    function writeRegister(instrucao, entry) {
+        registerStatus[instrucao.registradorR.replace('R','').replace('F','')] = entry;
         setRegisterStatus(registerStatus);
     }
 
@@ -415,7 +415,7 @@ export default function Home() {
 
                 novaInstrucao.issue = clock;
                 if ((UFParaUsar.tipoUnidade !== 'Store') && (UFParaUsar.operacao !== 'BEQ') && (UFParaUsar.operacao !== 'BEQ')) {
-                    writeRegister(novaInstrucao.instrucao, UFParaUsar.nome);
+                    writeRegister(novaInstrucao.instrucao, novaInstrucao.posicao);
                 }
             }
         }
