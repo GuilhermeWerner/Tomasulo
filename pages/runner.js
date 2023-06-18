@@ -15,13 +15,14 @@ import { ProgramContext } from '../src/ProgramContext';
 export default function Home() {
     const { program } = useContext(ProgramContext);
 
-    console.log(JSON.stringify(program));
+    //console.log(JSON.stringify(program));
 
     let baseI = {
         issue: null,
         exeCompleta: null,
         write: null,
         busy: false,
+        discart: false,
     }
 
     let instructions = [];
@@ -44,6 +45,7 @@ export default function Home() {
         vk: null,
         qj: null,
         qk: null,
+        jump: false,
     };
 
     let fUnites = [
@@ -160,9 +162,9 @@ export default function Home() {
         for (let i = 0; i < instructionStatus.length; i++) {
             let element = instructionStatus[i];
 
-            console.log("element:", element.instrucao.operacao);
+            //console.log("element:", element.instrucao.operacao);
 
-            if (element.issue === null) {
+            if (element.issue === null && !element.discart) {
                 return element;
             }
         }
@@ -171,7 +173,7 @@ export default function Home() {
     }
 
     function getFunctionalUnity(instr) {
-        console.log("getFunctionalUnity:", instr.operacao);
+        //console.log("getFunctionalUnity:", instr.operacao);
 
         switch (instr.operacao) {
             case 'ADD':
@@ -389,11 +391,12 @@ export default function Home() {
     }
 
     function issueInstruction() {
-        console.log("issueInstruction");
+        //console.log("issueInstruction");
 
         let novaInstrucao = fetchInstruction();
 
         if (novaInstrucao) {
+            console.log(novaInstrucao);
             let ufInstrucao = getFunctionalUnity(novaInstrucao.instrucao);
             let UFParaUsar = getEmptyFunctionalUnity(ufInstrucao);
 
@@ -406,7 +409,8 @@ export default function Home() {
                 }
 
                 novaInstrucao.issue = clock;
-                if ((UFParaUsar.tipoUnidade !== 'Store') && (UFParaUsar.operacao !== 'BEQ') && (UFParaUsar.operacao !== 'BEQ')) {
+
+                if ((UFParaUsar.tipoUnidade !== 'Store') && (UFParaUsar.operacao !== 'BEQ')) {
                     writeRegister(novaInstrucao.instrucao, novaInstrucao.posicao);
                 }
             }
@@ -429,6 +433,15 @@ export default function Home() {
 
         for (let key in functionalUnits) {
             var uf = functionalUnits[key];
+
+            if (uf.instrucao?.operacao === "BEQ") {
+                if (uf.instrucao?.registradorR === uf.instrucao?.registradorS) {
+                    let entry = uf.estadoInstrucao.posicao;
+                    instructionStatus[entry].discart = true;
+                    instructionStatus[entry + 1].discart = true;
+                    setInstructionStatus(instructionStatus);
+                }
+            }
 
             if ((uf.ocupado) && (uf.vj !== null) && (uf.vk !== null)) {
                 uf.tempo = uf.tempo - 1;
@@ -483,15 +496,24 @@ export default function Home() {
     function nextCycle() {
         setClock(clock + 1);
         console.log(clock);
-        issueInstruction();
-        executeInstruction();
-        writeInstruction();
+
+        let jump = issueInstruction();
+
+        if (!jump) {
+            executeInstruction();
+            writeInstruction();
+        }
+
         setInstructionStatus(instructionStatus);
         setMmoryUnits(memoryUnits);
         setFunctionalUnits(functionalUnits);
     }
 
     function getFormatedState(instr) {
+        if (instr.discart) {
+            return "Discarted";
+        }
+
         if (instr.write !== null) {
             return "Commit";
         }
