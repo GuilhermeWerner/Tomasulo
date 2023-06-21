@@ -443,6 +443,15 @@ export default function Home() {
                 }
             }
 
+            if (uf.instrucao?.operacao === "BNEZ") {
+                if (uf.instrucao?.registradorR != uf.instrucao?.registradorS) {
+                    let entry = uf.estadoInstrucao.posicao;
+                    instructionStatus[entry].discart = true;
+                    instructionStatus[entry + 1].discart = true;
+                    setInstructionStatus(instructionStatus);
+                }
+            }
+
             if ((uf.ocupado) && (uf.vj !== null) && (uf.vk !== null)) {
                 uf.tempo = uf.tempo - 1;
                 uf.estadoInstrucao.busy = true;
