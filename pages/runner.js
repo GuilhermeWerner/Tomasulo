@@ -410,7 +410,7 @@ export default function Home() {
 
                 novaInstrucao.issue = clock;
 
-                if ((UFParaUsar.tipoUnidade !== 'Store') && (UFParaUsar.operacao !== 'BEQ')) {
+                if ((UFParaUsar.tipoUnidade !== 'Store') && (UFParaUsar.operacao !== 'BEQ') && (UFParaUsar.operacao !== 'BNEZ')) {
                     writeRegister(novaInstrucao.instrucao, novaInstrucao.posicao);
                 }
             }
@@ -436,6 +436,15 @@ export default function Home() {
 
             if (uf.instrucao?.operacao === "BEQ") {
                 if (uf.instrucao?.registradorR === uf.instrucao?.registradorS) {
+                    let entry = uf.estadoInstrucao.posicao;
+                    instructionStatus[entry].discart = true;
+                    instructionStatus[entry + 1].discart = true;
+                    setInstructionStatus(instructionStatus);
+                }
+            }
+
+            if (uf.instrucao?.operacao === "BNEZ") {
+                if (uf.instrucao?.registradorR != uf.instrucao?.registradorS) {
                     let entry = uf.estadoInstrucao.posicao;
                     instructionStatus[entry].discart = true;
                     instructionStatus[entry + 1].discart = true;
